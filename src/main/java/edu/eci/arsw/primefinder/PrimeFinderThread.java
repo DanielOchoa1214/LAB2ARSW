@@ -1,5 +1,8 @@
 package edu.eci.arsw.primefinder;
 
+//import sun.awt.windows.ThemeReader;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -7,25 +10,35 @@ public class PrimeFinderThread extends Thread{
 
 	
 	int a,b;
+
+    private boolean isWait;
+	private final List<Integer> primes;
 	
-	private List<Integer> primes;
-	
-	public PrimeFinderThread(int a, int b) {
+	public PrimeFinderThread(int a, int b, ArrayList<Integer> primes) {
 		super();
-                this.primes = new LinkedList<>();
+        this.isWait = false;
+        this.primes = primes;
 		this.a = a;
 		this.b = b;
 	}
 
-        @Override
+    @Override
 	public void run(){
-            for (int i= a;i < b;i++){						
-                if (isPrime(i)){
+        for(int i = a; i < b; i++) {
+            synchronized(primes) {
+                if(isPrime(i)) {
                     primes.add(i);
-                    System.out.println(i);
+                    //System.out.println(i);
                 }
             }
+        }
 	}
+
+    public void changeIsWait() {
+        System.out.println(isWait);
+        isWait = !isWait;
+        System.out.println(isWait);
+    }
 	
 	boolean isPrime(int n) {
 	    boolean ans;
