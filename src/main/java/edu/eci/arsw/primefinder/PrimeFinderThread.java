@@ -11,12 +11,10 @@ public class PrimeFinderThread extends Thread{
 	
 	int a,b;
 
-    private boolean isWait;
 	private final List<Integer> primes;
 	
 	public PrimeFinderThread(int a, int b, ArrayList<Integer> primes) {
 		super();
-        this.isWait = false;
         this.primes = primes;
 		this.a = a;
 		this.b = b;
@@ -34,11 +32,6 @@ public class PrimeFinderThread extends Thread{
         }
 	}
 
-    public void changeIsWait() {
-        System.out.println(isWait);
-        isWait = !isWait;
-        System.out.println(isWait);
-    }
 	
 	boolean isPrime(int n) {
 	    boolean ans;
