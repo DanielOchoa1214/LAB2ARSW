@@ -9,5 +9,8 @@
         <module name="PrimeFinder" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="PrimeFinder" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
